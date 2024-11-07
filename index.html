@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focusable Graph</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Keyboard-Focusable Graph</h1>
+  <div class="graph-container">
+    <!-- Root node -->
+    <div class="node" tabindex="0" data-node="1">Node 1</div>
+    <!-- Level 1 -->
+    <div class="node-group">
+      <div class="node" tabindex="0" data-node="2">Node 2</div>
+      <div class="node" tabindex="0" data-node="3">Node 3</div>
+    </div>
+    <!-- Level 2 -->
+    <div class="node-group">
+      <div class="node" tabindex="0" data-node="4">Node 4</div>
+      <div class="node" tabindex="0" data-node="5">Node 5</div>
+      <div class="node" tabindex="0" data-node="6">Node 6</div>
+    </div>
+    <!-- Level 3 -->
+    <div class="node-group">
+      <div class="node" tabindex="0" data-node="7">Node 7</div>
+      <div class="node" tabindex="0" data-node="8">Node 8</div>
+      <div class="node" tabindex="0" data-node="9">Node 9</div>
+      <div class="node" tabindex="0" data-node="10">Node 10</div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

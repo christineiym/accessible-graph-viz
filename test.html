@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphML Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.24.0/cytoscape.min.js"></script>
+    <style>
+        #cy {
+            width: 80%;
+            height: 500px;
+            border: 1px solid black;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">GraphML Viewer</h1>
+    <div id="cy"></div>
+
+    <script>
+        async function loadGraphML(file) {
+            const response = await fetch(file);
+            const text = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(text, "text/xml");
+
+            const nodes = [];
+            const edges = [];
+
+            // Parse Nodes
+            xmlDoc.querySelectorAll("node").forEach(node => {
+                nodes.push({ data: { id: node.getAttribute("id") } });
+            });
+
+            // Parse Edges
+            xmlDoc.querySelectorAll("edge").forEach(edge => {
+                edges.push({
+                    data: {
+                        id: edge.getAttribute("id") || `${edge.getAttribute("source")}-${edge.getAttribute("target")}`,
+                        source: edge.getAttribute("source"),
+                        target: edge.getAttribute("target")
+                    }
+                });
+            });
+
+            renderGraph(nodes, edges);
+        }
+
+        function renderGraph(nodes, edges) {
+            cytoscape({
+                container: document.getElementById('cy'),
+                elements: [...nodes, ...edges],
+                style: [
+                    { selector: 'node', style: { 'background-color': 'blue', 'label': 'data(id)' } },
+                    { selector: 'edge', style: { 'width': 2, 'line-color': 'gray' } }
+                ],
+                layout: { name: 'cose' }  // Auto layout
+            });
+        }
+
+        // Load a sample GraphML file
+        loadGraphML('example.graphml'); // Replace with your actual file
+    </script>
+</body>
+</html>

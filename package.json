@@ -1,0 +1,16 @@
+{
+  "name": "accessible-graph-viz",
+  "version": "1.0.0",
+  "description": "WIP.",
+  "main": "elavsky.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "data-navigator": "^2.1.0",
+    "graphology": "^0.26.0",
+    "graphology-graphml": "^0.5.2"
+  }
+}
